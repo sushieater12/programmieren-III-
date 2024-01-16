@@ -3,6 +3,7 @@ class RasenDestroyer {
     spalte;
     energie = 15;
     istGolden = false;
+   
     constructor(z, s) {
         this.zeile = z;
         this.spalte = s;
@@ -11,6 +12,7 @@ class RasenDestroyer {
         }
         this.platziereSelbstInMatrix();
     };
+    
     platziereSelbstInMatrix() {
         if (this.istGolden) {
             matrix[this.zeile][this.spalte] = 4;
@@ -99,7 +101,7 @@ class RasenDestroyer {
                 let j = (richtung + i) % 4
                 let ausgewähltesFeld = benachbarteFelder[j];
                 if (inMatrix(ausgewähltesFeld)) {
-                    if (istGras(ausgewähltesFeld)) {
+                    if (scanFeld(ausgewähltesFeld,1)) {
                         matrix[this.zeile][this.spalte] = 0;
                         löschObjekt(GrasArray, ausgewähltesFeld[0], ausgewähltesFeld[1])
                         this.zeile = ausgewähltesFeld[0];

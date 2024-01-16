@@ -1,10 +1,9 @@
-class Gras {
+class Gras extends LivingCreature{
     zeile;
     spalte;
     energie = 0;
     constructor(z,s) {
-        this.zeile = z;
-        this.spalte = s;
+        super(z,s)
         this.platziereSelbstInMatrix();
     };
 
@@ -28,34 +27,35 @@ class Gras {
         // 1 -> RECHTS
         // 2 -> LINKS
         // 3 -> UNTEN
-        let richtung = randomNumber(0, 4);
-        let benachbarteFelder = [
-            [this.zeile - 1, this.spalte],
-            [this.zeile, this.spalte - 1],
-            [this.zeile + 1, this.spalte],
-            [this.zeile, this.spalte + 1],
-        ]
+
+        // let richtung = randomNumber(0, 4);
+        // let benachbarteFelder = [
+        //     [this.zeile - 1, this.spalte],
+        //     [this.zeile, this.spalte - 1],
+        //     [this.zeile + 1, this.spalte],
+        //     [this.zeile, this.spalte + 1],
+        // ]
 
 
-        for (let i = 0; i < 4; i++) {
-            let j = (richtung + i) % 4;
-            let ausgewähltesFeld = benachbarteFelder[j];
-            if (inMatrix(ausgewähltesFeld)) {
-                if (scanFeld(ausgewähltesFeld,0)) {
-                    let zeile = ausgewähltesFeld[0];
-                    let spalte = ausgewähltesFeld[1];
+        // for (let i = 0; i < 4; i++) {
+        //     let j = (richtung + i) % 4;
+        //     let ausgewähltesFeld = benachbarteFelder[j];
+        //     if (inMatrix(ausgewähltesFeld)) {
+        //         if (scanFeld(ausgewähltesFeld,0)) {
+        //             let zeile = ausgewähltesFeld[0];
+        //             let spalte = ausgewähltesFeld[1];
                 
-                    GrasArray.push(new Gras(zeile, spalte))
-                    return;
+        //             GrasArray.push(new Gras(zeile, spalte))
+        //             return;
                 
-            }
-            }
+        //     }
+        //     }
 
-        }
-
+        // }
+    super.platziereNeuesLivingCreature(0)
     }
 
-    platziereSelbstInMatrix() {
+    platziereSelbstInMatrix() {                         
         matrix[this.zeile][this.spalte] = 1;
     };
 

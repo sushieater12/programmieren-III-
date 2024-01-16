@@ -61,18 +61,18 @@ function löschObjekt(liste,zeile,spalte) {
   return liste.splice(index,1);
 }
 
-function istGras(koordinatenPaar) {
-    let zeile = koordinatenPaar[0];
-    let spalte = koordinatenPaar[1];
+// function istGras(koordinatenPaar) {
+//     let zeile = koordinatenPaar[0];
+//     let spalte = koordinatenPaar[1];
 
-    // Ist an der stelle (zeile,spalte) in der Matrix gras (== 1)?
-    if (matrix[zeile][spalte] === 1) {
-        return true
-    }
-    if (matrix[zeile][spalte] === 0) {
-        return false
-    }
-}
+//     // Ist an der stelle (zeile,spalte) in der Matrix gras (== 1)?
+//     if (matrix[zeile][spalte] === 1) {
+//         return true
+//     }
+//     if (matrix[zeile][spalte] === 0) {
+//         return false
+//     }
+// }
 
 function scanFeld(koordinatenPaar,farbcode) {
     let zeile = koordinatenPaar[0];
