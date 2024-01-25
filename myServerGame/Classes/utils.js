@@ -84,3 +84,4 @@ function scanFeld(koordinatenPaar, farbcode) {
     } else return false;
 }
 
+module.exports = {scanFeld,löschObjekt,randomNumber,inMatrix,zeichneMatrix,erstelleMatrix}
