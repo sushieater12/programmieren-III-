@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-app.use(express.static("../GoLEdit/"));
+app.use(express.static("../Pro.3spiel/"));
 
 app.get("/", function (req, res) {
   res.send("<h1>Hello world</h1><p>lalala</p>");
@@ -17,5 +17,5 @@ app.get("/search/:search", function (req, res) {
 });
 
 app.get("/game", function (req, res) {
-  res.redirect("game.html");
+  res.redirect("index-1-3.html");
 });

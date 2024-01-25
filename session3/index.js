@@ -1,7 +1,5 @@
-const os = require("os")
-let message = "die plattform ist "
-
-function main(){
-    console.log(message + os.platform())
-}
-main()
+const Square = require("./square.js")
+let sq = new Square(10)
+let area = sq.getArea()
+console.log(sq.side)
+console.log(area)
