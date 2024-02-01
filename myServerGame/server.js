@@ -4,28 +4,58 @@ const Fresser = require("./classes/fresserclass.js")
 const RasenDestroyer = require("./classes/rasen_destroyerclass.js")
 const utils = require("./utils.js")
 const app = express()
-let interval
-
-intervalID = setInterval(function () {
-    updateGame()
-
-}, 1000)
+let interValID
+let server = require('http').Server(app)
+let io = require('socket.io')(server)
+let gameStarted = false
 
 matrix = utils.erstelleMatrix(10, 10);
 GrasArray = [];
 RasenDestroyerArray = [];
 fresserArray = [];
 goldenArray = []
+let clients = []
+
+app.use(express.static('./client'))
+app.get("/", function (req, res) {
+    res.redirect('client.html')
+})
 
 
-app.listen(3000, function () {
+server.listen(3000, function () {
     console.log("der server läuft auf port 3000")
-    //spiel startet
 
-    initGame()
-    console.log(matrix)
-    updateGame()
+    io.on("connection", function (socket) {
+        console.log("ws-connection client", socket.id)
 
+        clients.push(socket.id);
+
+        if (clients.length == 1 && gameStarted == false) {
+            initGame()
+            console.log(matrix)
+            updateGame()
+            interValID = setInterval(function () {
+                updateGame()
+            }, 1000)
+            gameStarted = true
+        }
+        
+        socket.on("disconnect", function (reason) {
+            console.log("client was disconnected: reason - ", reason)
+            const foundIndex = clients.findIndex(id => id == socket.id)
+            if (foundIndex >= 0) {
+                clients.splice(foundIndex, 1)
+            }
+            console.log(clients);
+            if (clients.length == 0) {
+                clearInterval(interValID)
+                gameStarted = false
+            }
+        })
+
+    })
+
+    return matrix
 })
 
 
@@ -49,9 +79,10 @@ function initGame() {
 
 
 }
+
 function updateGame() {
     console.log("update game")
-   
+
     for (let i = 0; i < GrasArray.length; i++) {
         GrasArray[i].spielzug()
         console.log("gut")
@@ -66,5 +97,6 @@ function updateGame() {
         goldenArray[i].spielzug()
     }
     // utils.zeichneMatrix();
-    console.log(matrix)
+    console.log("update")
+
 }
