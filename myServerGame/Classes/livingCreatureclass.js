@@ -1,5 +1,5 @@
 //benachbarte felder //scanfeld //machschritt /7plaziereneueslivingcreature
-
+const utils = require("../utils.js")
 module.exports = class LivingCreature {
 
     constructor(z, s) {
@@ -17,7 +17,7 @@ module.exports = class LivingCreature {
         // 1 -> RECHTS
         // 2 -> LINKS
         // 3 -> UNTEN
-        let richtung = randomNumber(0, 4);
+        let richtung = utils.randomNumber(0, 4);
         let benachbarteFelder = [
             [this.zeile - 1, this.spalte],
             [this.zeile, this.spalte - 1],
@@ -28,7 +28,7 @@ module.exports = class LivingCreature {
         for (let i = 0; i < 4; i++) {
             let indexRand = (richtung + i) % 4;
             let ausgewähltesFeld = benachbarteFelder[indexRand];
-            if (inMatrix(ausgewähltesFeld) && scanFeld(ausgewähltesFeld, farbCode)) {
+            if (utils.inMatrix(ausgewähltesFeld) && utils.scanFeld(ausgewähltesFeld, farbCode)) {
                 // if (scanFeld(ausgewähltesFeld, farbCode)) {
                 return ausgewähltesFeld;    
                 // let zeile = ausgewähltesFeld[0];

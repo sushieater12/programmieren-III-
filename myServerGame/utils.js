@@ -10,25 +10,25 @@ function erstelleMatrix(spalten, zeilen) {
     return matrix;
 }
 
-function zeichneMatrix() {
-    for (let zeile = 0; zeile < matrix.length; zeile++) {
-        for (let spalte = 0; spalte < matrix.length; spalte++) {
-            if (matrix[zeile][spalte] === 1) {
-                fill(0, 100, 0);
-            } else if (matrix[zeile][spalte] === 0) {
-                fill(99, 82, 27)
-            } else if (matrix[zeile][spalte] === 2) {
-                fill(255, 0, 0)
-            } else if (matrix[zeile][spalte] === 3) {
-                fill(255, 255, 255)
-            } else if (matrix[zeile][spalte] === 4) {
-                fill(230, 181, 21)
-            }
-            let k = 500 / matrix.length;
-            rect(spalte * k, zeile * k, k, k)
-        }
-    }
-}
+// function zeichneMatrix() {
+//     for (let zeile = 0; zeile < matrix.length; zeile++) {
+//         for (let spalte = 0; spalte < matrix.length; spalte++) {
+//             if (matrix[zeile][spalte] === 1) {
+//                 fill(0, 100, 0);
+//             } else if (matrix[zeile][spalte] === 0) {
+//                 fill(99, 82, 27)
+//             } else if (matrix[zeile][spalte] === 2) {
+//                 fill(255, 0, 0)
+//             } else if (matrix[zeile][spalte] === 3) {
+//                 fill(255, 255, 255)
+//             } else if (matrix[zeile][spalte] === 4) {
+//                 fill(230, 181, 21)
+//             }
+//             let k = 500 / matrix.length;
+//             rect(spalte * k, zeile * k, k, k)
+//         }
+//     }
+// }
 
 
 function randomNumber(min, max) {
@@ -84,4 +84,4 @@ function scanFeld(koordinatenPaar, farbcode) {
     } else return false;
 }
 
-module.exports = {scanFeld,löschObjekt,randomNumber,inMatrix,zeichneMatrix,erstelleMatrix}
+ module.exports = {scanFeld,löschObjekt,randomNumber,inMatrix,/*zeichneMatrix,*/erstelleMatrix}

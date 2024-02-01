@@ -1,4 +1,5 @@
 const LivingCreature  = require("./livingcreatureclass.js")
+const utils = require("../utils.js")
 module.exports = class Gras extends LivingCreature {
     // zeile;
     // spalte;

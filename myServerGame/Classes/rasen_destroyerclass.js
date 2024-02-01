@@ -1,5 +1,5 @@
 const LivingCreature  = require("./livingcreatureclass.js")
-const utils = require("./utils.js")
+const utils = require("../utils.js")
 module.exports = class RasenDestroyer extends LivingCreature{
     // zeile;
     // spalte;
@@ -8,7 +8,7 @@ module.exports = class RasenDestroyer extends LivingCreature{
 
     constructor(z, s) {
         super(z,s)
-        if (randomNumber(1, 100) === 69) {
+        if (utils.randomNumber(1, 100) === 69) {
             this.istGolden = true;
         }
         this.platziereSelbstInMatrix();
@@ -30,7 +30,7 @@ module.exports = class RasenDestroyer extends LivingCreature{
             this.machSchritt();
         } else {
             matrix[this.zeile][this.spalte] = 0;
-            löschObjekt(RasenDestroyerArray, this.zeile, this.spalte);
+            utils.löschObjekt(RasenDestroyerArray, this.zeile, this.spalte);
         }
     };
     platziereNeuenRasenDestroyer() {
@@ -77,7 +77,7 @@ module.exports = class RasenDestroyer extends LivingCreature{
         // 1 -> RECHTS
         // 2 -> LINKS
         // 3 -> UNTEN
-        let richtung = randomNumber(0, 4);
+        let richtung = utils.randomNumber(0, 4);
         let benachbarteFelder = [
             [this.zeile - 1, this.spalte],
             [this.zeile, this.spalte - 1],
@@ -88,10 +88,10 @@ module.exports = class RasenDestroyer extends LivingCreature{
             for (let i = 0; i < 4; i++) {
                 let j = (richtung + i) % 4
                 let ausgewähltesFeld = benachbarteFelder[j];
-                if (inMatrix(ausgewähltesFeld)) {
-                    if (scanFeld(ausgewähltesFeld, 1)) {
+                if (utils.inMatrix(ausgewähltesFeld)) {
+                    if (utils.scanFeld(ausgewähltesFeld, 1)) {
                         matrix[this.zeile][this.spalte] = 0;
-                        löschObjekt(GrasArray, ausgewähltesFeld[0], ausgewähltesFeld[1])
+                        utils.löschObjekt(GrasArray, ausgewähltesFeld[0], ausgewähltesFeld[1])
                         this.zeile = ausgewähltesFeld[0];
                         this.spalte = ausgewähltesFeld[1];
                         matrix[this.zeile][this.spalte] = 2;
@@ -104,10 +104,10 @@ module.exports = class RasenDestroyer extends LivingCreature{
             for (let i = 0; i < 4; i++) {
                 let j = (richtung + i) % 4
                 let ausgewähltesFeld = benachbarteFelder[j];
-                if (inMatrix(ausgewähltesFeld)) {
-                    if (scanFeld(ausgewähltesFeld, 1)) {
+                if (utils.inMatrix(ausgewähltesFeld)) {
+                    if (utils.scanFeld(ausgewähltesFeld, 1)) {
                         matrix[this.zeile][this.spalte] = 0;
-                        löschObjekt(GrasArray, ausgewähltesFeld[0], ausgewähltesFeld[1])
+                        utilslöschObjekt(GrasArray, ausgewähltesFeld[0], ausgewähltesFeld[1])
                         this.zeile = ausgewähltesFeld[0];
                         this.spalte = ausgewähltesFeld[1];
                         matrix[this.zeile][this.spalte] = 4;
